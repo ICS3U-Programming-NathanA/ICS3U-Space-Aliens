@@ -7,6 +7,7 @@
 import ugame
 import stage
 
+
 def game_scene():
     # 3 blank lines
     print("\n\n\n")
@@ -17,8 +18,9 @@ def game_scene():
 
     # repeat forever, game loop
     while True:
-        # just a place holder for now 
-        pass 
+        # just a place holder for now
+        pass
+
 
 if __name__ == "__main__":
     game_scene()
