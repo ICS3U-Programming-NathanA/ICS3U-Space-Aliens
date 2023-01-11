@@ -4,21 +4,28 @@
 # Date: Jan.9, 2022
 # This program is called "Space Attack program on the PyBadge"
 
-# import ugame
-# import stage
+import ugame
+import stage
 
 
 def game_scene():
-    # 3 blank lines
-    print("\n\n\n")
-    # prints the text "Hello Everyone"
-    print("Hello Everyone!")
-    # prints the text "My name is Nathan"
-    print("My name is Nathan.")
 
-    # repeat forever, game loop
+    # this function is the main game scene
+
+    # gets the image from the file
+    image_bank_background = stage.Bank.from_bmp16("space_aliens_background.bmp")
+    # create a grid on the pybadge
+    background = stage.Grid(image_bank_background, 10, 8)
+
+    # displays the images on screen at 60fps
+    game = stage.Stage(ugame.display, 60)
+    # create layers on the pybadge
+    # take images and add them to a list
+    game.layers = [background]
+    game.render_block()
+
     while True:
-        # just a place holder for now
+        # repeat forever, or you turn it off
         pass
 
 
