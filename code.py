@@ -2,7 +2,7 @@
 
 # Created by: Nathan Araujo
 # Date: Jan.9, 2022
-# This program is called "Space Attack program on the PyBadge"
+# This program is called "Space Attack" program on the PyBadge
 
 import ugame
 import stage
