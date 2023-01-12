@@ -33,7 +33,7 @@ def game_scene():
         keys = ugame.buttons.get_pressed()
 
         # If they press the "A" key
-        if keys & ugame.K_K:
+        if keys & ugame.K_X:
             print("A")
         # If they press the "B" key
         if keys & ugame.K_O:
@@ -46,16 +46,16 @@ def game_scene():
             print("Select")
         # If they press the right key
         if keys & ugame.K_RIGHT:
-            ship.move(ship.x + 8, ship.y)
+            ship.move(ship.x + 3, ship.y)
         # If they press the left key
         if keys & ugame.K_LEFT:
-            ship.move(ship.x - 8, ship.y)
+            ship.move(ship.x - 3, ship.y)
         # If they press the up key
         if keys & ugame.K_UP:
-            ship.move(ship.x, ship.y - 8)
+            ship.move(ship.x, ship.y - 3)
         # If they press the down key
         if keys & ugame.K_DOWN:
-            ship.move(ship.x, ship.y + 8)
+            ship.move(ship.x, ship.y + 3)
 
         # update game logic
 
