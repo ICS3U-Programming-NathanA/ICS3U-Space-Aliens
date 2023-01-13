@@ -56,14 +56,14 @@ def game_scene():
         if keys & ugame.K_RIGHT:
             # if statement to check if its at the right side of the screen
             if ship.x <= constants.SCREEN_X - constants.SPRITE_SIZE:
-                ship.move(ship.x + 3, ship.y)
+                ship.move(ship.x + constants.SPRITE_MOVEMENT_SPEED, ship.y)
             else:
                 ship.move(0, ship.y)
         # If they press the left key
         if keys & ugame.K_LEFT:
             # if statement to check if its at the left side of the screen
             if ship.x >= 0:
-                ship.move(ship.x - 3, ship.y)
+                ship.move(ship.x - constants.SPRITE_MOVEMENT_SPEED, ship.y)
             else:
                 ship.move(constants.SCREEN_X - constants.SPRITE_SIZE, ship.y)
         # If they press the up key
