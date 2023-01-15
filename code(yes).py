@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+ 
 # Created by: Nathan Araujo
 # Date: Jan.9, 2022
 # This program is called "Space Attack" program on the PyBadge
@@ -12,72 +12,27 @@ import ugame
 import constants
 
 
-def menu_scene():
-
-    # this function is the main game scene
-
-    # gets the background image from the file
-    image_bank_background = stage.Bank.from_bmp16("space_aliens_background.bmp")
-
-    # add text objects
-    text = []
-    text1 = stage.Text(width=29, height=12, font=None, palette=constants.RED_PALETTE, buffer=None)
-    text1.move(20, 10)
-    text1.text("MT Game Studios")
-    text.append(text1)
-
-    text2 = stage.Text(width=29, height=12, font=None, palette=constants.RED_PALETTE, buffer=None)
-    text2.move(40, 110)
-    text2.text("PRESS START")
-    text.append(text2)
-
-
-
-    # create a grid on the pybadge for the background
-    background = stage.Grid(
-        image_bank_background, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y
-    )
-
-    # displays the images on screen at 60fps
-    game = stage.Stage(ugame.display, constants.FPS)
-    # create layers on the pybadge
-    # take images and add them to a list
-    game.layers = text + [background]
-    game.render_block()
-
-    while True:
-        # get user input
-        keys = ugame.buttons.get_pressed()
-
-        # If they press the start key
-        if keys & ugame.K_START != 0:
-            game_scene()
-
-        # redraw sprites
-        game.tick()
-
-
 def game_scene():
-
+ 
     # this function is the main game scene
-
+ 
     # gets the background image from the file
     image_bank_background = stage.Bank.from_bmp16("space_aliens_background.bmp")
     # gets the sprite from the file
     image_bank_sprite = stage.Bank.from_bmp16("space_aliens.bmp")
-
+ 
     # buttons you want to keep information on
     a_button = constants.button_state["button_up"]
     b_button = constants.button_state["button_up"]
     start_button = constants.button_state["button_up"]
     select_button = constants.button_state["button_up"]
-
+ 
     # get sound ready
     pew_sound = open("pew.wav", "rb")
     sound = ugame.audio
     sound.stop()
     sound.mute(False)
-
+ 
     # create a grid on the pybadge for the background
     background = stage.Grid(
         image_bank_background, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y
@@ -98,11 +53,11 @@ def game_scene():
     # take images and add them to a list
     game.layers = [ship] + [alien] + [background]
     game.render_block()
-
+ 
     while True:
         # get user input
         keys = ugame.buttons.get_pressed()
-
+ 
         # If they press the "A" key
         if keys & ugame.K_X != 0:
             if a_button == constants.button_state["button_up"]:
@@ -144,7 +99,7 @@ def game_scene():
         # If they press the down key
         if keys & ugame.K_DOWN:
             pass
-
+ 
         # update game logic
         # play the shoot sound if button "A" is pressed
         if a_button == constants.button_state["button_just_pressed"]:
