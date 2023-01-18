@@ -18,7 +18,7 @@ def menu_scene():
 
     # gets the background image from the file for the menu_scene
     image_bank_mt_background = stage.Bank.from_bmp16("mt_game_studio.bmp")
-    
+
     menu_sound = open("menu.wav", "rb")
     sound = ugame.audio
     sound.stop()
@@ -28,7 +28,7 @@ def menu_scene():
 
     # add text objects
     text = []
-    # customization for the text 
+    # customization for the text
     # text 3 width is 29, height is 12 and set the palette to the constants RED_PALETTE
     text1 = stage.Text(
         width=29, height=12, font=None, palette=constants.RED_PALETTE, buffer=None
@@ -40,7 +40,7 @@ def menu_scene():
     # add text to a list
     text.append(text1)
 
-    # customization for the text 
+    # customization for the text
     # text 2 width is 29, height is 12 and set the palette to the constants RED_PALETTE
     text2 = stage.Text(
         width=29, height=12, font=None, palette=constants.RED_PALETTE, buffer=None
@@ -81,6 +81,7 @@ def menu_scene():
             music_loop = 0
         else:
             music_loop += 1
+
 
 def game_scene():
 
@@ -134,7 +135,7 @@ def game_scene():
             if a_button == constants.button_state["button_up"]:
                 # set it to being button pressed
                 a_button = constants.button_state["button_just_pressed"]
-                #elif the button is just pressed
+                # elif the button is just pressed
             elif a_button == constants.button_state["button_just_pressed"]:
                 # make sure it does not repeat, if the button is pressed once and it is still held down
                 a_button = constants.button_state["button_still_pressed"]
