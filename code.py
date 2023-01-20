@@ -112,6 +112,28 @@ def menu_scene():
     # add text to a list
     text.append(text2)
 
+    # text 2 width is 29, height is 12 and set the palette to the constants RED_PALETTE
+    text3 = stage.Text(
+        width=24, height=12, font=None, palette=constants.RED_PALETTE, buffer=None
+    )
+    # move the text to (40, 110)
+    text3.move(5, 50)
+    # What the text says
+    text3.text("Press B to see")
+    # add text to a list
+    text.append(text3)
+
+        # text 2 width is 29, height is 12 and set the palette to the constants RED_PALETTE
+    text4 = stage.Text(
+        width=24, height=12, font=None, palette=constants.RED_PALETTE, buffer=None
+    )
+    # move the text to (40, 110)
+    text4.move(5, 62)
+    # What the text says
+    text4.text("instructions")
+    # add text to a list
+    text.append(text4)
+
     # create a grid on the pybadge for the background
     background = stage.Grid(
         image_bank_mt_background, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y
@@ -132,7 +154,9 @@ def menu_scene():
         # If they press the start key
         if keys & ugame.K_START != 0:
             game_scene()
-
+        # Check if the "B" button is pressed
+        if keys & ugame.K_O != 0:
+            instructions_scene()
         # redraw sprites
         game.tick()
         # play sound
@@ -142,6 +166,147 @@ def menu_scene():
         else:
             music_loop += 1
 
+
+def instructions_scene():
+    # This function displays the instructions scene
+
+    # Load the image "mt_game_studio.bmp" for the background
+    # The background will be white
+    image_bank_3 = stage.Bank.from_bmp16("mt_game_studio.bmp")
+
+    # Create a background object using the image and dimensions from constants
+    background = stage.Grid(
+        image_bank_3, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y
+    )
+
+    # Add text objects for the menu scene
+    text = []
+    # Create a Text object with a width of 15, height of 12, no font, and the red palette
+    text1 = stage.Text(
+        width=15,
+        height=12,
+        font=None,
+        palette=constants.RED_PALETTE,
+        buffer=None,
+    )
+    # Move the text to the proper position (20, 10)
+    text1.move(5, 10)
+    # Set the text to "AQUA-KINGDOM : INSTRUCTIONS"
+    text1.text("INSTRUCTIONS")
+    # Add the text object to the text list
+    text.append(text1)
+
+    # Create a Text object with a width of 17, height of 12, no font, and the red palette
+    text2 = stage.Text(
+        width=17,
+        height=12,
+        font=None,
+        palette=constants.RED_PALETTE,
+        buffer=None,
+    )
+    # Move the text to the proper position (20, 50)
+    text2.move(5, 25)
+    # Set the text
+    text2.text("Get highest score")
+    # Add the text object to the text list
+    text.append(text2)
+
+    # Create a Text object with a width of 20, height of 12, no font, and the red palette
+    text3 = stage.Text(
+        width=20,
+        height=12,
+        font=None,
+        palette=constants.RED_PALETTE,
+        buffer=None,
+    )
+
+    # Move the text to the position (20, 90)
+    text3.move(5, 37)
+    # Set the text
+    text3.text("Move and shoot")
+    # Add the text object to the text list
+    text.append(text3)
+
+    # Create a Text object with a width of 17, height of 12, no font, and the red palette
+    text4 = stage.Text(
+        width=17,
+        height=12,
+        font=None,
+        palette=constants.RED_PALETTE,
+        buffer=None,
+    )
+    # Move the text to the proper position (20, 70)
+    text4.move(5, 49)
+    # Set the text
+    text4.text("By pressing the")
+    # Add the text object to the text list
+    text.append(text4)
+
+    # Create a Text object with a width of 17, height of 12, no font, and the red palette
+    text5 = stage.Text(
+        width=17,
+        height=12,
+        font=None,
+        palette=constants.RED_PALETTE,
+        buffer=None,
+    )
+    # Move the text to the proper position (20, 70)
+    text5.move(5, 61)
+    # Set the text
+    text5.text("buttons on the")
+    # Add the text object to the text list
+    text.append(text5)
+
+        # Create a Text object with a width of 17, height of 12, no font, and the red palette
+    text6 = stage.Text(
+        width=17,
+        height=12,
+        font=None,
+        palette=constants.RED_PALETTE,
+        buffer=None,
+    )
+    # Move the text to the proper position (20, 70)
+    text6.move(5, 73)
+    # Set the text
+    text6.text("left and the")
+    # Add the text object to the text list
+    text.append(text6)
+
+            # Create a Text object with a width of 17, height of 12, no font, and the red palette
+    text7 = stage.Text(
+        width=17,
+        height=12,
+        font=None,
+        palette=constants.RED_PALETTE,
+        buffer=None,
+    )
+    # Move the text to the proper position (20, 70)
+    text7.move(5, 85)
+    # Set the text
+    text7.text("A button")
+    # Add the text object to the text list
+    text.append(text7)
+
+    # Create a "Stage" object to manage the game graphics and input
+    game = stage.Stage(ugame.display, constants.FPS)
+
+    # Add the background and text objects to the layers list
+    # For the instructions scene, we only need the background and text
+    game.layers = text + [background]
+
+    # Draw the background and text on the screen
+    game.render_block()
+
+    while True:
+        # Get user input (buttons pressed)
+        keys = ugame.buttons.get_pressed()
+
+        # Check if the 'A' button is pressed
+        if keys & ugame.K_X != 0:
+            # If the 'A' button is pressed, run the menu scene
+            menu_scene()
+
+        game.tick()
 
 def game_scene():
 
@@ -155,16 +320,22 @@ def game_scene():
     def show_alien():
         # this function takes amd alien off screen and moves it on screen
         for alien_number in range(len(aliens)):
+            # Check if the x position of the alien is less than 0
             if aliens[alien_number].x < 0:
+                # If so, move the alien to a random position on the x-axis within the screen's width 
+                # and off the top of the screen
                 aliens[alien_number].move(
                     random.randint(
+                     # left edge of the screen
                         0 + constants.SPRITE_SIZE,
+                         # right edge of the screen
                         constants.SCREEN_X - constants.SPRITE_SIZE,
                     ),
+                     # off the top of the screen
                     constants.OFF_TOP_SCREEN,
                 )
+                # Exit the loop
                 break
-
     # gets the background image from the file
     image_bank_background = stage.Bank.from_bmp16("space_aliens_background.bmp")
     # gets the sprite from the file
@@ -212,6 +383,7 @@ def game_scene():
     )
     # create a list of the aliens
     aliens = []
+    # Loop through all the aliens
     for alien_number in range(constants.TOTAL_NUMBER_OF_ALIENS):
         a_single_alien = stage.Sprite(
             image_bank_sprite, 9, constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y
@@ -222,6 +394,7 @@ def game_scene():
 
     # create a list of the lasers for when we shoot
     lasers = []
+    # Loop through all the lasers
     for laser_number in range(constants.TOTAL_NUMBER_OF_LASERS):
         a_single_laser = stage.Sprite(
             image_bank_sprite, 10, constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y
@@ -328,16 +501,22 @@ def game_scene():
                     )
                     show_alien()
                     score -= 1
+                    # if the score is less than 0
                     if score < 0:
                         score = 0
                     score_text.clear()
                     score_text.cursor(0,0)
                     score_text.move(1,1)
                     score_text.text("Score: {0}".format(score))
+        # Iterate through all the lasers
         for laser_number in range(len(lasers)):
+            # Check if the laser is still on the screen (x position is greater than 0)
             if lasers[laser_number].x > 0:
+                  # Iterate through all the aliens
                 for alien_number in range(len(aliens)):
+                # Check if the alien is still on the screen (x position is greater than 0)
                     if aliens[alien_number].x > 0:
+                        # Check if the laser and alien are colliding
                         if stage.collide(lasers[laser_number].x + 6, lasers[laser_number].y + 2,
                             lasers[laser_number].x + 11, lasers[laser_number].y + 12,
                             aliens[alien_number].x + 1, aliens[alien_number].y,
@@ -354,8 +533,11 @@ def game_scene():
                             score_text.cursor(0,0)
                             score_text.move(1,1)
                             score_text.text("Score: {0}".format(score))
+        # Iterate through all the aliens
         for alien_number in range(len(aliens)):
+            # Check if the aliens are still on the screen (x position is greater than 0)
             if aliens[alien_number].x > 0:
+                # Check if the alien and ship are colliding
                 if stage.collide(aliens[alien_number].x + 1, aliens[alien_number].y,
                 aliens[alien_number].x + 15, aliens[alien_number].y + 15,
                 ship.x, ship.y,
@@ -382,20 +564,33 @@ def game_over_scene(final_score):
     # sets the background to image 0 in the image bank
     background = stage.Grid(image_bank_2, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
 
+    # makes a list called text
     text = []
+    # customizes the text
     text1 = stage.Text(width=29, height=14, font=None, palette=constants.RED_PALETTE, buffer=None)
+    # The texts position
     text1.move(22,20)
+    # What the text displays
     text1.text("Final Score: {:0>2d}".format(final_score))
+    # add text to the list
     text.append(text1)
 
+    # customizes the text2
     text2 = stage.Text(width=29, height=14, font=None, palette=constants.RED_PALETTE, buffer=None)
-    text2.move(22,20)
+    # The texts position
+    text2.move(22,55)
+    # What the text displays
     text2.text("GAME OVER")
+    # add text to the list
     text.append(text2)
 
+    # customizes the text3
     text3 = stage.Text(width=29, height=14, font=None, palette=constants.RED_PALETTE, buffer=None)
+    # The texts position
     text3.move(32,110)
+    # What the text displays
     text3.text("PRESS SELECT")
+    # add text to the list
     text.append(text3)
 
     game = stage.Stage(ugame.display, constants.FPS)
@@ -408,6 +603,7 @@ def game_over_scene(final_score):
 
         keys = ugame.buttons.get_pressed()
 
+        # Check if the SELECT button is pressed
         if keys & ugame.K_SELECT != 0:
             supervisor.reload()
 
